@@ -333,15 +333,19 @@
         </footer>
     </div>
 
-    <script src="plugins/jquery/jquery.min.js"></script>
+    <div id ="container"></div>
+
+   <script src="plugins/jquery/jquery.min.js"></script>
 
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <script src="dist/js/adminlte.min.js?v=3.2.0"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    
+    <script src="https://gw.alipayobjects.com/os/lib/antv/g6/4.8.24/dist/g6.min.js"></script>
 
-    <script type="importmap">
+    <!-- <script type="importmap">
     {
       "imports": {
         "@stomp/stompjs": "https://ga.jspm.io/npm:@stomp/stompjs@7.0.0/esm6/index.js"
@@ -365,6 +369,9 @@
         });
 
         client.activate();
-    </script>
+    </script> -->
+
+    <script src="./graph.js" type="module"></script>
+</body>
 
 </html>
