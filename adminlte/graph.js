@@ -1,156 +1,96 @@
 const data = {
-    isRoot: true,
-    id: 'Root',
-    style: {
-      fill: 'red',
+  nodes: [
+    {
+      id: '0'
     },
-    children: [
-      {
-        id: 'SubTreeNode1',
-        raw: {},
-        children: [
-          {
-            id: 'SubTreeNode1.1',
-          },
-          {
-            id: 'SubTreeNode1.2',
-            children: [
-              {
-                id: 'SubTreeNode1.2.1',
-              },
-              {
-                id: 'SubTreeNode1.2.2',
-              },
-              {
-                id: 'SubTreeNode1.2.3',
-              },
-            ],
-          },
-        ],
-      },
-      {
-        id: 'SubTreeNode2',
-        children: [
-          {
-            id: 'SubTreeNode2.1',
-          },
-        ],
-      },
-      {
-        id: 'SubTreeNode3',
-        children: [
-          {
-            id: 'SubTreeNode3.1',
-          },
-          {
-            id: 'SubTreeNode3.2',
-          },
-          {
-            id: 'SubTreeNode3.3',
-          },
-        ],
-      },
-      {
-        id: 'SubTreeNode4',
-      },
-      {
-        id: 'SubTreeNode5',
-      },
-      {
-        id: 'SubTreeNode6',
-      },
-      {
-        id: 'SubTreeNode7',
-      },
-      {
-        id: 'SubTreeNode8',
-      },
-      {
-        id: 'SubTreeNode9',
-      },
-      {
-        id: 'SubTreeNode10',
-      },
-      {
-        id: 'SubTreeNode11',
-      },
-    ],
-  };
-  
-  const container = document.getElementById('container');
-  const width = container.scrollWidth;
-  const height = container.scrollHeight || 500;
-  const graph = new G6.TreeGraph({
-    container: 'container',
-    width,
-    height,
-    linkCenter: true,
-    modes: {
-      default: [
-        {
-          type: 'collapse-expand',
-          onChange: function onChange(item, collapsed) {
-            const data = item.get('model');
-            data.collapsed = collapsed;
-            return true;
-          },
-        },
-        'drag-canvas',
-        'zoom-canvas',
-      ],
+    {
+      id: '1'
     },
-    defaultNode: {
-      size: 30,
+  ],
+  edges: [
+    // Built-in arc edges
+    {
+      id: 'edge0',
+      source: '0',
+      target: '1',
+      label: 'curveOffset = 20',
+      curveOffset: 20,
     },
-    layout: {
-      type: 'compactBox',
-      direction: 'LR',
-      getId: function getId(d) {
-        return d.id;
-      },
-      getHeight: function getHeight() {
-        return 16;
-      },
-      getWidth: function getWidth() {
-        return 16;
-      },
-      getVGap: function getVGap() {
-        return 10;
-      },
-      getHGap: function getHGap() {
-        return 100;
-      },
+    {
+      id: 'edge1',
+      source: '0',
+      target: '1',
+      label: 'curveOffset = 50', // the bending degree
+      curveOffset: 50,
     },
+    {
+      id: 'edge2',
+      source: '0',
+      target: '1',
+      label: 'curveOffset = -50', // the bending degree
+      curveOffset: -50,
+    },
+  ],
+};
+
+const width = document.getElementById('container').scrollWidth;
+const height = document.getElementById('container').scrollHeight || 500;
+const graph = new G6.Graph({
+  container: 'container',
+  width,
+  height,
+  linkCenter: true,
+  // translate the graph to align the canvas's center, support by v3.5.1
+  fitCenter: true,
+  modes: {
+    // 支持的 behavior
+    default: ['drag-node'],
+  },
+  defaultEdge: {
+    type: 'arc',
+    /* you can configure the global edge style as following lines */
+    // style: {
+    //   stroke: '#F6BD16',
+    // },
+    labelCfg: {
+      autoRotate: true,
+      refY: -10,
+    },
+  },
+  /* styles for different states, there are built-in styles for states: active, inactive, selected, highlight, disable */
+  // edgeStateStyles: {
+  //   // edge style of active state
+  //   active: {
+  //     opacity: 0.5,
+  //     stroke: '#f00'
+  //   },
+  //   // edge style of selected state
+  //   selected: {
+  //     stroke: '#ff0'
+  //     lineWidth: 3,
+  //   },
+  // },
+});
+
+graph.data(data);
+graph.render();
+
+graph.on('edge:mouseenter', (evt) => {
+  const { item } = evt;
+  graph.setItemState(item, 'active', true);
+});
+
+graph.on('edge:mouseleave', (evt) => {
+  const { item } = evt;
+  graph.setItemState(item, 'active', false);
+});
+
+graph.on('edge:click', (evt) => {
+  const { item } = evt;
+  graph.setItemState(item, 'selected', true);
+});
+graph.on('canvas:click', (evt) => {
+  graph.getEdges().forEach((edge) => {
+    graph.clearItemStates(edge);
   });
-  
-  graph.node(function (node) {
-    return {
-      size: 16,
-      anchorPoints: [
-        [0, 0.5],
-        [1, 0.5],
-      ],
-      style: {
-        fill: '#C6E5FF',
-        stroke: '#5B8FF9',
-      },
-      label: node.id,
-      labelCfg: {
-        position: node.children && node.children.length > 0 ? 'left' : 'right',
-        offset: 5,
-      },
-    };
-  });
-  let i = 0;
-  graph.edge(function () {
-    i++;
-    return {
-      type: 'cubic-horizontal',
-      color: '#A3B1BF',
-      label: i,
-    };
-  });
-  
-  graph.data(data);
-  graph.render();
-  graph.fitView();
+});
