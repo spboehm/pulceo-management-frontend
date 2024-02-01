@@ -1,37 +1,12 @@
-const data = {
-  nodes: [
-    {
-      id: '0'
-    },
-    {
-      id: '1'
-    },
-  ],
-  edges: [
-    // Built-in arc edges
-    {
-      id: 'edge0',
-      source: '0',
-      target: '1',
-      label: 'curveOffset = 20',
-      curveOffset: 20,
-    },
-    {
-      id: 'edge1',
-      source: '0',
-      target: '1',
-      label: 'curveOffset = 50', // the bending degree
-      curveOffset: 50,
-    },
-    {
-      id: 'edge2',
-      source: '0',
-      target: '1',
-      label: 'curveOffset = -50', // the bending degree
-      curveOffset: -50,
-    },
-  ],
-};
+async function logMovies() {
+  const response = await fetch("http://localhost:7878/internal/v1/g6/graph/550e8400-e29b-11d4-a716-446655440000");
+  const movies = await response.json();
+  return movies;
+}
+
+
+const data = logMovies();
+console.log(data)
 
 const width = document.getElementById('container').scrollWidth;
 const height = document.getElementById('container').scrollHeight || 500;
