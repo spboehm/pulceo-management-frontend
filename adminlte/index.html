@@ -315,7 +315,7 @@
 
     <script src="https://gw.alipayobjects.com/os/lib/antv/g6/4.8.24/dist/g6.min.js"></script>
 
-    <!-- <script type="importmap">
+    <script type="importmap">
     {
       "imports": {
         "@stomp/stompjs": "https://ga.jspm.io/npm:@stomp/stompjs@7.0.0/esm6/index.js"
@@ -326,20 +326,8 @@
     <script async src="https://ga.jspm.io/npm:es-module-shims@1.5.1/dist/es-module-shims.js" crossorigin="anonymous"></script>
 
     <script type="module">
-        import { Client } from '@stomp/stompjs';
-
-        const client = new Client({
-            brokerURL: 'ws://localhost:7777/ws',
-            onConnect: () => {
-                client.subscribe('/metrics/asdf', message =>
-                    console.log(`Received: ${message.body}`)
-                );
-                client.publish({ destination: '/pms/register', body: 'First Message' });
-            },
-        });
-
-        client.activate();
-    </script> -->
+        
+    </script>
 
     <script src="./graph.js" type="module"></script>
 

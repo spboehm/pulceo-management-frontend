@@ -1,3 +1,5 @@
+import { Client } from '@stomp/stompjs';
+
 fetch("http://localhost:7878/internal/v1/g6/graph", {
   method: 'GET',
   headers: {
@@ -67,6 +69,40 @@ fetch("http://localhost:7878/internal/v1/g6/graph", {
         graph.clearItemStates(edge);
       });
     });
+
+    const client = new Client({
+      brokerURL: 'ws://localhost:7777/ws',
+      onConnect: () => {
+          client.subscribe('/metrics/asdf', message =>
+          my(graph)
+          );
+          client.publish({ destination: '/pms/register', body: 'First Message' });
+      },
+    });
+    client.activate();
+    
+    function my(graph, message, id) {
+      const model = {
+        id: '5',
+        label: 'd52bb935-533c-4c39-8cc3-df0e2305eb1d',
+        source: '69fd0da6-fd41-41d0-b052-d2943ecc5024',
+        target: '379da2f7-c575-4466-9e4e-8e0e2d741433',
+        label: message,
+        curveOffset: 50,
+        type: 'arc'
+      };
+      graph.addItem('edge', model);
+
+
+      const model2 = {
+        id: '6',
+        label: 'd52bb935-533c-4c39-8cc3-df0e2305eb1d',
+        source: '379da2f7-c575-4466-9e4e-8e0e2d741433',
+        target: '69fd0da6-fd41-41d0-b052-d2943ecc5024',
+        label: message,
+        curveOffset: 50,
+        type: 'arc'
+      };
+      graph.addItem('edge', model2);
+     }
  })
-
-
