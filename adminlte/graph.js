@@ -32,6 +32,11 @@ fetch("http://localhost:7878/internal/v1/g6/graph", {
           refY: -10,
         },
       },
+      animate: true, // Boolean, whether to activate the animation when global changes happen
+      animateCfg: {
+        duration: 500, // Number, the duration of one animation
+        easing: 'linearEasing', // String, the easing function
+      },
       /* styles for different states, there are built-in styles for states: active, inactive, selected, highlight, disable */
       // edgeStateStyles: {
       //   // edge style of active state
@@ -46,6 +51,49 @@ fetch("http://localhost:7878/internal/v1/g6/graph", {
       //   },
       // },
     });
+
+    G6.registerEdge(
+      'updateEdge',
+      {
+        afterDraw(cfg, group) {
+          // Get the first graphics shape of this type of edge, which is the edge's path
+          const shape = group.get('children')[0];
+          // The start point of the edge's path
+          const startPoint = shape.getPoint(0);
+    
+          // Add a red circle shape
+          const circle = group.addShape('circle', {
+            attrs: {
+              x: startPoint.x,
+              y: startPoint.y,
+              fill: 'red',
+              r: 3,
+            },
+            // must be assigned in G6 3.3 and later versions. it can be any value you want
+            name: 'circle-shape',
+          });
+    
+          // Add the animation to the red circle
+          circle.animate(
+            (ratio) => {
+              // Returns the properties for each frame. The input parameter ratio is a number that range from 0 to 1. The return value is an object that defines the properties for this frame
+              // Get the position on the edge according to the ratio
+              const tmpPoint = shape.getPoint(ratio);
+              // Return the properties of this frame, x and y for this demo
+              return {
+                x: tmpPoint.x,
+                y: tmpPoint.y,
+              };
+            },
+            {
+              repeat: true, // Play the animation repeatly
+              duration: 3000, // The duration for one animation
+            },
+          );
+        },
+      },
+      'updateEdge',
+    ); // Extend the built-in edge cubic
     
     graph.data(data);
     graph.render();
@@ -70,6 +118,8 @@ fetch("http://localhost:7878/internal/v1/g6/graph", {
       });
     });
 
+    
+
     const client = new Client({
       brokerURL: 'ws://localhost:7777/ws',
       onConnect: () => {
@@ -84,7 +134,8 @@ fetch("http://localhost:7878/internal/v1/g6/graph", {
     function updateEdge(graph, message) {
       const messageAsJson = JSON.parse(message.body);
       const data = {
-        label: messageAsJson.value + " " + messageAsJson.unit
+        label: messageAsJson.value + " " + messageAsJson.unit,
+        type: 'updateEdge'
       }
       const item = graph.findById(messageAsJson.linkUUID)
       graph.updateItem(item, data);
