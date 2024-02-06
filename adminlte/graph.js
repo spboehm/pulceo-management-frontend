@@ -73,8 +73,8 @@ fetch("http://localhost:7878/internal/v1/g6/graph", {
     const client = new Client({
       brokerURL: 'ws://localhost:7777/ws',
       onConnect: () => {
-          client.subscribe('/metrics/asdf', message =>
-          my(graph)
+          client.subscribe('/metrics/+', message =>
+            console.log(message.body)
           );
           client.publish({ destination: '/pms/register', body: 'First Message' });
       },
