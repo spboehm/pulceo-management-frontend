@@ -8,6 +8,7 @@ fetch("http://localhost:7878/internal/v1/g6/graph", {
 })
  .then(res => res.json())
  .then(data => {
+    console.log(data);
     const width = document.getElementById('container').scrollWidth;
     const height = document.getElementById('container').scrollHeight || 500;
     const graph = new G6.Graph({
@@ -74,13 +75,23 @@ fetch("http://localhost:7878/internal/v1/g6/graph", {
       brokerURL: 'ws://localhost:7777/ws',
       onConnect: () => {
           client.subscribe('/metrics/+', message =>
-            console.log(message.body)
+            updateEdge(graph, message)
           );
           client.publish({ destination: '/pms/register', body: 'First Message' });
       },
     });
     client.activate();
     
+    function updateEdge(graph, message) {
+      const messageAsJson = JSON.parse(message.body);
+      const data = {
+        label: messageAsJson.value + " " + messageAsJson.unit
+      }
+      const item = graph.findById(messageAsJson.linkUUID)
+      graph.updateItem(item, data);
+    }
+
+
     function my(graph, message, id) {
       const model = {
         id: '5',
