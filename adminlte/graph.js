@@ -8,7 +8,6 @@ fetch("http://localhost:7878/internal/v1/g6/graph", {
 })
  .then(res => res.json())
  .then(data => {
-    console.log(data);
     const width = document.getElementById('container').scrollWidth;
     const height = document.getElementById('container').scrollHeight || 500;
     const graph = new G6.Graph({
