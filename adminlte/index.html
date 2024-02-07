@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PULCEO | Dashboard</title>
+    <title>PULCEO | Dashboard - Topology</title>
 
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -17,7 +17,6 @@
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
-
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
 
             <ul class="navbar-nav">
@@ -164,7 +163,7 @@
                         <img src="dist/img/dsg-logo.png" class="img-circle elevation-2" alt="User Image">
                         </div>
                     <div class="info">
-                        <a href="#" class="d-block">Distributed <br /> Systems Group</a>
+                        <a href="#" class="d-block">DSG</a>
                     </div>
                 </div>
 
@@ -248,13 +247,10 @@
                         </li>
                     </ul>
                 </nav>
-
             </div>
-
         </aside>
 
         <div class="content-wrapper">
-
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
@@ -271,27 +267,31 @@
                 </div>
             </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Default Card Example</h3>
-                    <div class="card-tools">
-                        <!-- Buttons, labels, and many other things can be placed here! -->
-                        <!-- Here is a label for example -->
-                        <span class="badge badge-primary">Label</span>
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Default Card Example</h3>
+                            <div class="card-tools">
+                                <!-- Buttons, labels, and many other things can be placed here! -->
+                                <!-- Here is a label for example -->
+                                <span class="badge badge-primary">Label</span>
+                            </div>
+                            <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div id ="container"></div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            Last updated on: ""
+                        </div>
+                        <!-- /.card-footer -->
                     </div>
-                    <!-- /.card-tools -->
+                    <!-- /.card -->
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <div id ="container"></div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                    Last updated on: ""
-                </div>
-                <!-- /.card-footer -->
-            </div>
-            <!-- /.card -->
+            </section>
         </div>
 
         <footer class="main-footer">
@@ -324,10 +324,6 @@
     </script>
 
     <script async src="https://ga.jspm.io/npm:es-module-shims@1.5.1/dist/es-module-shims.js" crossorigin="anonymous"></script>
-
-    <script type="module">
-        
-    </script>
 
     <script src="./graph.js" type="module"></script>
 

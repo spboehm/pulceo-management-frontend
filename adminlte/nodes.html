@@ -5,17 +5,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PULCEO | Dashboard</title>
+    <title>PULCEO | Dashboard - Nodes</title>
 
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
 
     <script src="https://kit.fontawesome.com/e28e30bdac.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/liquidjs/dist/liquid.browser.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/liquidjs/dist/liquid.browser.min.js"></script>
     <link rel="stylesheet" href="dist/css/adminlte.min.css?v=3.2.0">
 </head>
 
 <body class="hold-transition sidebar-mini">
+    <script type="text/template">
     <div class="wrapper">
 
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -164,7 +165,7 @@
                         <img src="dist/img/dsg-logo.png" class="img-circle elevation-2" alt="User Image">
                         </div>
                     <div class="info">
-                        <a href="#" class="d-block">Distributed <br /> Systems Group</a>
+                        <a href="#" class="d-block">DSG</a>
                     </div>
                 </div>
 
@@ -254,7 +255,6 @@
         </aside>
 
         <div class="content-wrapper">
-
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
@@ -264,102 +264,80 @@
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Topology</li>
+                                <li class="breadcrumb-item active">Nodes</li>
                             </ol>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="card">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Simple Full Width Table</h3>
-                        <div class="card-tools">
-                            <ul class="pagination pagination-sm float-right">
-                                <li class="page-item"><a class="page-link" href="#">«</a></li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">»</a></li>
-                            </ul>
+                <section class="content">
+                    <div class="container-fluid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Nodes</h3>
+                            <div class="card-tools">
+                                <ul class="pagination pagination-sm float-right">
+                                    <li class="page-item"><a class="page-link" href="#">«</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">»</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 10px">#</th>
+                                        <th>Name</th>
+                                        <th>Hostname</th>
+                                        <th>Provider</th>
+                                        <th>Layer</th>
+                                        <th>Type</th>                               
+                                        <th style="width: 40px">Role</th>
+                                        <th>Country</th>
+                                        <th>City</th>
+                                        <th>Longitude</th>
+                                        <th>Latitude</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for node in nodes %}
+                                        <tr>
+                                            <td>{{ forloop.index }}</td>
+                                            <td>{{ node.node.name }}</td>
+                                            <td>{{ node.hostname }}</td>
+                                            <td>{{ node.providerName }}</td>
+                                            <td>{{ node.node.layer }}</td>
+                                            <td><span class="badge bg-success">{{ node.node.type }}</span></td>
+                                            <td><span class="badge bg-primary">{{ node.node.role}}</span></td>
+                                            <td>{{ node.node.nodeLocationCountry }}</td>
+                                            <td>{{ node.node.nodeLocationCity }}</td>
+                                            <td>{{ node.node.nodeLocationLongitude }}</td>
+                                            <td>{{ node.node.nodeLocationLatitude }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-
-                    <div class="card-body p-0">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th style="width: 10px">#</th>
-                                    <th>Task</th>
-                                    <th>Progress</th>
-                                    <th style="width: 40px">Label</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1.</td>
-                                    <td>Update software</td>
-                                    <td>
-                                        <div class="progress progress-xs">
-                                            <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge bg-danger">55%</span></td>
-                                </tr>
-                                <tr>
-                                    <td>2.</td>
-                                    <td>Clean database</td>
-                                    <td>
-                                        <div class="progress progress-xs">
-                                            <div class="progress-bar bg-warning" style="width: 70%"></div>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge bg-warning">70%</span></td>
-                                </tr>
-                                <tr>
-                                    <td>3.</td>
-                                    <td>Cron job running</td>
-                                    <td>
-                                        <div class="progress progress-xs progress-striped active">
-                                            <div class="progress-bar bg-primary" style="width: 30%"></div>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge bg-primary">30%</span></td>
-                                </tr>
-                                <tr>
-                                    <td>4.</td>
-                                    <td>Fix and squish bugs</td>
-                                    <td>
-                                        <div class="progress progress-xs progress-striped active">
-                                            <div class="progress-bar bg-success" style="width: 90%"></div>
-                                        </div>
-                                    </td>
-                                    <td><span class="badge bg-success">90%</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
+            </section>
+        </div>
+    </script>
+    <div id="result"></div>
+
+        <footer class="main-footer">
+
+            <div class="float-right d-none d-sm-inline">
+                PULCEO
             </div>
-            <script type="text/template">
-                <h3>{{ name | capitalize | prepend: "Welcome to "}}</h3>
-            </script>
-            <div id="result"></div>
-        </div>
 
-
-            <footer class="main-footer">
-
-                <div class="float-right d-none d-sm-inline">
-                    PULCEO
-                </div>
-
-                <strong>Copyright &copy; 2024 <a href="https://www.uni-bamberg.de/en/pi/">Distributed Systems
-                        Group</a>.</strong> All rights
-                reserved.
-            </footer>
-        </div>
+            <strong>Copyright &copy; 2024 <a href="https://www.uni-bamberg.de/en/pi/">Distributed Systems
+                    Group</a>.</strong> All rights
+            reserved.
+        </footer>
 
         <script src="plugins/jquery/jquery.min.js"></script>
 
@@ -386,18 +364,7 @@
 
         </script>
 
-        <script src="./nodes.js" type="module"></script>
-
-        <script>
-            const template = document.querySelector('[type="text/template"]')
-            const result = document.querySelector('#result')
-            const engine = new liquidjs.Liquid()
-
-            engine
-                .parseAndRender(template.innerHTML, {name: 'liquid'})
-                .then(html => result.innerHTML = html)
-          </script>
-
+        <script src="./node-table.js" type="module"></script>
 
 </body>
 
