@@ -79,7 +79,7 @@
                         <a href="#" class="dropdown-item">
 
                             <div class="media">
-                                <img src="dist/img/dsg-logo.png" alt="User Avatar"
+                                <img src="dist/img/user8-128x128.jpg" alt="User Avatar"
                                     class="img-size-50 img-circle mr-3">
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
@@ -194,13 +194,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link active">
+                                    <a href="./" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Topology</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="./nodes.html" class="nav-link">
+                                    <a href="#" class="nav-link active">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Nodes</p>
                                     </a>
@@ -272,50 +272,106 @@
             </div>
 
             <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Default Card Example</h3>
-                    <div class="card-tools">
-                        <!-- Buttons, labels, and many other things can be placed here! -->
-                        <!-- Here is a label for example -->
-                        <span class="badge badge-primary">Label</span>
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Simple Full Width Table</h3>
+                        <div class="card-tools">
+                            <ul class="pagination pagination-sm float-right">
+                                <li class="page-item"><a class="page-link" href="#">«</a></li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">»</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <!-- /.card-tools -->
+
+                    <div class="card-body p-0">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Task</th>
+                                    <th>Progress</th>
+                                    <th style="width: 40px">Label</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1.</td>
+                                    <td>Update software</td>
+                                    <td>
+                                        <div class="progress progress-xs">
+                                            <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge bg-danger">55%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2.</td>
+                                    <td>Clean database</td>
+                                    <td>
+                                        <div class="progress progress-xs">
+                                            <div class="progress-bar bg-warning" style="width: 70%"></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge bg-warning">70%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>3.</td>
+                                    <td>Cron job running</td>
+                                    <td>
+                                        <div class="progress progress-xs progress-striped active">
+                                            <div class="progress-bar bg-primary" style="width: 30%"></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge bg-primary">30%</span></td>
+                                </tr>
+                                <tr>
+                                    <td>4.</td>
+                                    <td>Fix and squish bugs</td>
+                                    <td>
+                                        <div class="progress progress-xs progress-striped active">
+                                            <div class="progress-bar bg-success" style="width: 90%"></div>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge bg-success">90%</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                    <div id ="container"></div>
-                </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                    Last updated on: ""
-                </div>
-                <!-- /.card-footer -->
             </div>
-            <!-- /.card -->
+            <script type="text/template">
+                <h3>{{ name | capitalize | prepend: "Welcome to "}}</h3>
+            </script>
+            <div id="result"></div>
         </div>
 
-        <footer class="main-footer">
 
-            <div class="float-right d-none d-sm-inline">
-                PULCEO
-            </div>
+            <footer class="main-footer">
 
-            <strong>Copyright &copy; 2024 <a href="https://www.uni-bamberg.de/en/pi/">Distributed Systems Group</a>.</strong> All rights
-            reserved.
-        </footer>
-    </div>
+                <div class="float-right d-none d-sm-inline">
+                    PULCEO
+                </div>
 
-    <script src="plugins/jquery/jquery.min.js"></script>
+                <strong>Copyright &copy; 2024 <a href="https://www.uni-bamberg.de/en/pi/">Distributed Systems
+                        Group</a>.</strong> All rights
+                reserved.
+            </footer>
+        </div>
 
-    <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="plugins/jquery/jquery.min.js"></script>
 
-    <script src="dist/js/adminlte.min.js?v=3.2.0"></script>
+        <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+        <script src="dist/js/adminlte.min.js?v=3.2.0"></script>
 
-    <script src="https://gw.alipayobjects.com/os/lib/antv/g6/4.8.24/dist/g6.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 
-    <script type="importmap">
+        <script src="https://gw.alipayobjects.com/os/lib/antv/g6/4.8.24/dist/g6.min.js"></script>
+
+        <script type="importmap">
     {
       "imports": {
         "@stomp/stompjs": "https://ga.jspm.io/npm:@stomp/stompjs@7.0.0/esm6/index.js"
@@ -323,13 +379,25 @@
     }
     </script>
 
-    <script async src="https://ga.jspm.io/npm:es-module-shims@1.5.1/dist/es-module-shims.js" crossorigin="anonymous"></script>
+        <script async src="https://ga.jspm.io/npm:es-module-shims@1.5.1/dist/es-module-shims.js"
+            crossorigin="anonymous"></script>
 
-    <script type="module">
-        
-    </script>
+        <script type="module">
 
-    <script src="./graph.js" type="module"></script>
+        </script>
+
+        <script src="./nodes.js" type="module"></script>
+
+        <script>
+            const template = document.querySelector('[type="text/template"]')
+            const result = document.querySelector('#result')
+            const engine = new liquidjs.Liquid()
+
+            engine
+                .parseAndRender(template.innerHTML, {name: 'liquid'})
+                .then(html => result.innerHTML = html)
+          </script>
+
 
 </body>
 
