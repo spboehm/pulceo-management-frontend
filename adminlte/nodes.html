@@ -16,7 +16,7 @@
 </head>
 
 <body class="hold-transition sidebar-mini">
-    <script type="text/template">
+    
     <div class="wrapper">
 
         <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -259,7 +259,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Topology</h1>
+                            <h1 class="m-0">Nodes</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -272,59 +272,118 @@
             </div>
                 <section class="content">
                     <div class="container-fluid">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">Nodes</h3>
-                            <div class="card-tools">
-                                <ul class="pagination pagination-sm float-right">
-                                    <li class="page-item"><a class="page-link" href="#">«</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">»</a></li>
-                                </ul>
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Nodes</h3>
+                                <div class="card-tools">
+                                    <ul class="pagination pagination-sm float-right">
+                                        <li class="page-item"><a class="page-link" href="#">«</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">»</a></li>
+                                    </ul>
+                                </div>
                             </div>
+                            <script id="nodes" type="text/template">
+                                <div class="card-body p-0">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 10px">#</th>
+                                                <th>Name</th>
+                                                <th>Hostname</th>
+                                                <th>Provider</th>
+                                                <th>Layer</th>
+                                                <th>Type</th>                               
+                                                <th style="width: 40px">Role</th>
+                                                <th>Country</th>
+                                                <th>City</th>
+                                                <th>Longitude</th>
+                                                <th>Latitude</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for node in nodes %}
+                                                <tr>
+                                                    <td>{{ forloop.index }}</td>
+                                                    <td>{{ node.node.name }}</td>
+                                                    <td>{{ node.hostname }}</td>
+                                                    <td>{{ node.providerName }}</td>
+                                                    <td>{{ node.node.layer }}</td>
+                                                    <td><span class="badge bg-success">{{ node.node.type }}</span></td>
+                                                    <td><span class="badge bg-primary">{{ node.node.role}}</span></td>
+                                                    <td>{{ node.node.nodeLocationCountry }}</td>
+                                                    <td>{{ node.node.nodeLocationCity }}</td>
+                                                    <td>{{ node.node.nodeLocationLongitude }}</td>
+                                                    <td>{{ node.node.nodeLocationLatitude }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </script>
+                            <div id="nodes-result"></div>
                         </div>
-                        <div class="card-body p-0">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 10px">#</th>
-                                        <th>Name</th>
-                                        <th>Hostname</th>
-                                        <th>Provider</th>
-                                        <th>Layer</th>
-                                        <th>Type</th>                               
-                                        <th style="width: 40px">Role</th>
-                                        <th>Country</th>
-                                        <th>City</th>
-                                        <th>Longitude</th>
-                                        <th>Latitude</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {% for node in nodes %}
-                                        <tr>
-                                            <td>{{ forloop.index }}</td>
-                                            <td>{{ node.node.name }}</td>
-                                            <td>{{ node.hostname }}</td>
-                                            <td>{{ node.providerName }}</td>
-                                            <td>{{ node.node.layer }}</td>
-                                            <td><span class="badge bg-success">{{ node.node.type }}</span></td>
-                                            <td><span class="badge bg-primary">{{ node.node.role}}</span></td>
-                                            <td>{{ node.node.nodeLocationCountry }}</td>
-                                            <td>{{ node.node.nodeLocationCity }}</td>
-                                            <td>{{ node.node.nodeLocationLongitude }}</td>
-                                            <td>{{ node.node.nodeLocationLatitude }}</td>
-                                        </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">CPU</h3>
+                                <div class="card-tools">
+                                    <ul class="pagination pagination-sm float-right">
+                                        <li class="page-item"><a class="page-link" href="#">«</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">»</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <script id="resources-cpu" type="text/template">
+                                <div class="card-body p-0">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 10px">#</th>
+                                                <th>Node name</th>
+                                                <th>Model name</th>
+                                                <th>Cores</th>
+                                                <th>Threads</th>                               
+                                                <th>BogoMIPS</th>                               
+                                                <th>MIPS</th>
+                                                <th>Frequency</th>
+                                                <th>Shares</th>
+                                                <th>Slots</th>
+                                                <th>MIPS</th>
+                                                <th>GFLOP</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for cpu in cpus %}
+                                                <tr>
+                                                    <td>{{ forloop.index }}</td>
+                                                    <td>{{ cpu.nodeName }}</td>
+                                                    <td>{{ cpu.cpuCapacity.modelName }}</td>
+                                                    <td>{{ cpu.cpuCapacity.cores }}</td>
+                                                    <td>{{ cpu.cpuCapacity.threads }}</td>
+                                                    <td>{{ cpu.cpuCapacity.bogoMIPS }}</td>
+                                                    <td>{{ cpu.cpuCapacity.mips }}</td>
+                                                    <td>{{ cpu.cpuCapacity.averageFrequency }}</td>
+                                                    <td>{{ cpu.cpuCapacity.shares }}</td>
+                                                    <td>{{ cpu.cpuCapacity.slots }}</td>
+                                                    <td>{{ cpu.cpuCapacity.mips }}</td>
+                                                    <td>{{ cpu.cpuCapacity.gflop }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </script>
+                            <div id="resources-cpu-result"></div>
                         </div>
                     </div>
-                </div>
-            </section>
-        </div>
+                </section>
+            </div>
         <footer class="main-footer">
 
             <div class="float-right d-none d-sm-inline">
@@ -335,8 +394,7 @@
                     Group</a>.</strong> All rights
             reserved.
         </footer>
-    </script>
-    <div id="result"></div>
+    
         
     <script src="plugins/jquery/jquery.min.js"></script>
 
@@ -360,6 +418,7 @@
         crossorigin="anonymous"></script>
 
     <script src="./nodes.js" type="module"></script>
+    <script src="./resources-cpu.js" type="module"></script>
         
 </body>
 

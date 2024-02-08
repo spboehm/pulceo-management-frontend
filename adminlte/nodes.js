@@ -6,9 +6,8 @@ fetch("http://localhost:7878/api/v1/nodes", {
 })
  .then(res => res.json())
  .then(data => {
-  console.log(data)
-    const template = document.querySelector('[type="text/template"]')
-    const result = document.querySelector('#result')
+    const template = document.querySelector('#nodes')
+    const result = document.querySelector('#nodes-result')
     const engine = new liquidjs.Liquid()
     
     engine
