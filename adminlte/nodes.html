@@ -202,7 +202,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="#" class="nav-link active">
-                                        <i class="far fa-circle nav-icon"></i>
+                                        <i class="fa-solid fa-circle  nav-icon"></i>
                                         <p>Nodes</p>
                                     </a>
                                 </li>
@@ -259,7 +259,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0">Nodes</h1>
+                            <h1 class="m-0"><i class="fa-solid fa-circle mr-1"></i>Nodes</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
@@ -274,7 +274,7 @@
                     <div class="container-fluid">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Nodes</h3>
+                                <h3 class="card-title"><i class="fa-solid fa-server mr-1"></i>Devices</h3>
                                 <div class="card-tools">
                                     <ul class="pagination pagination-sm float-right">
                                         <li class="page-item"><a class="page-link" href="#">«</a></li>
@@ -328,7 +328,7 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">CPU</h3>
+                                <h3 class="card-title"><i class="fa-solid fa-microchip mr-1"></i>CPU</h3>
                                 <div class="card-tools">
                                     <ul class="pagination pagination-sm float-right">
                                         <li class="page-item"><a class="page-link" href="#">«</a></li>
@@ -351,11 +351,11 @@
                                                 <th>Threads</th>                               
                                                 <th>BogoMIPS</th>                               
                                                 <th>MIPS</th>
-                                                <th>Frequency</th>
-                                                <th>Shares</th>
+                                                <th>Frequency (MHz)</th>
+                                                <th>Shares (Mi)</th>
                                                 <th>Slots</th>
                                                 <th>MIPS</th>
-                                                <th>GFLOP</th>
+                                                <th>GFLOPS</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -379,9 +379,51 @@
                                     </table>
                                 </div>
                             </script>
-                            <div id="resources-cpu-result"></div>
+                        <div id="resources-cpu-result"></div>
                         </div>
+                        <div class="row">
+                        <div class="col-lg-5">
+                        <div class="card ">
+                            <div class="card-header">
+                                <h3 class="card-title"><i class="fa-solid fa-memory mr-1"></i>Memory</h3>
+                                <div class="card-tools">
+                                    <ul class="pagination pagination-sm float-right">
+                                        <li class="page-item"><a class="page-link" href="#">«</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">»</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <script id="resources-memory" type="text/template">
+                                <div class="card-body p-0">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 10px">#</th>
+                                                <th>Node name</th>
+                                                <th>Capacity (GiB)</th>
+                                                <th>Slots</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for mem in memory %}
+                                                <tr>
+                                                    <td>{{ forloop.index }}</td>
+                                                    <td>{{ mem.nodeName }}</td>
+                                                    <td>{{ mem.memoryCapacity.size }}</td>
+                                                    <td>{{ mem.memoryCapacity.slots }}</td>
+                                                </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </script>
+                        <div id="resources-memory-result"></div>
                     </div>
+                </div>
+
                 </section>
             </div>
         <footer class="main-footer">
@@ -419,6 +461,7 @@
 
     <script src="./nodes.js" type="module"></script>
     <script src="./resources-cpu.js" type="module"></script>
+    <script src="./resources-memory.js" type="module"></script>
         
 </body>
 
